@@ -21,7 +21,10 @@ public class RestAssuredExercises1 {
 		
 		given().
 		when().
-		then();
+				get("http://ergast.com/api/f1/2015/drivers.json").
+		then().
+				assertThat().
+				statusCode(200);
 	}
 	
 	/*******************************************************
@@ -35,7 +38,10 @@ public class RestAssuredExercises1 {
 				
 		given().
 		when().
-		then();
+                get("http://ergast.com/api/f1/incorrect.json").
+		then().
+                assertThat().
+                statusCode(400);
 	}
 	
 	/*******************************************************
@@ -49,7 +55,10 @@ public class RestAssuredExercises1 {
 		
 		given().
 		when().
-		then();
+                get("http://ergast.com/api/f1/2015/drivers.json").
+		then().
+                assertThat().
+                contentType("application/json");
 	}
 	
 	/***********************************************
@@ -64,7 +73,9 @@ public class RestAssuredExercises1 {
 		
 		given().
 		when().
-		then();
+                get("http://ergast.com/api/f1/2014/1/circuits.json").
+		then().
+                body("MRData.CircuitTable.Circuits.circuitId",hasItem("albert_park"));
 	}
 	
 	/***********************************************
@@ -77,7 +88,9 @@ public class RestAssuredExercises1 {
 
 		given().
 		when().
-		then();
+                get("http://ergast.com/api/f1/2014/1/circuits.json").
+		then().
+                body("",hasItem("silverstone"));
 	}
 	
 	/***********************************************
@@ -91,6 +104,8 @@ public class RestAssuredExercises1 {
 
 		given().
 		when().
-		then();
+                get("http://ergast.com/api/f1/2014/1/circuits.json").
+		then().
+                body("",not("nurburgring"));
 	}
 }
